@@ -1,0 +1,36 @@
+{
+    "name": "ultradev/magento-brtracker",
+    "description": "Notificação de rastreio por e-mail e WhatsApp para OpenMage / Magento 1.x — Correios, Frenet, Melhor Envio, JadLog, Loggi e transportadoras customizadas",
+    "type": "magento-module",
+    "version": "1.0.0",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "UltraDev",
+            "email": "contato@ultradev.com.br",
+            "homepage": "https://ultradev.com.br"
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "magento-hackathon/magento-composer-installer": "*"
+    },
+    "extra": {
+        "magento-root-dir": "../../",
+        "magento-deploystrategy": "copy",
+        "auto-append-gitignore": true
+    },
+    "keywords": [
+        "magento",
+        "openmage",
+        "rastreio",
+        "tracking",
+        "whatsapp",
+        "correios",
+        "frenet",
+        "melhor-envio",
+        "jadlog",
+        "loggi",
+        "ultradev"
+    ]
+}
