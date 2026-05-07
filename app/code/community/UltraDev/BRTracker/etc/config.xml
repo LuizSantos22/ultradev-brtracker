@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <UltraDev_BRTracker>
+            <version>1.0.0</version>
+        </UltraDev_BRTracker>
+    </modules>
+
+    <global>
+        <models>
+            <brtracker>
+                <class>UltraDev_BRTracker_Model</class>
+                <resourceModel>brtracker_resource</resourceModel>
+            </brtracker>
+            <brtracker_resource>
+                <class>UltraDev_BRTracker_Model_Resource</class>
+                <entities>
+                    <track><table>ultradev_brt_tracks</table></track>
+                    <log><table>ultradev_brt_notification_log</table></log>
+                </entities>
+            </brtracker_resource>
+        </models>
+
+        <helpers>
+            <brtracker><class>UltraDev_BRTracker_Helper</class></brtracker>
+        </helpers>
+
+        <blocks>
+            <brtracker><class>UltraDev_BRTracker_Block</class></brtracker>
+            <brtracker_adminhtml><class>UltraDev_BRTracker_Block_Adminhtml</class></brtracker_adminhtml>
+            <adminhtml>
+                <rewrite>
+                    <sales_order_shipment_create_tracking>UltraDev_BRTracker_Block_Adminhtml_Sales_Order_Shipment_Create_Tracking</sales_order_shipment_create_tracking>
+                    <sales_order_shipment_view_tracking>UltraDev_BRTracker_Block_Adminhtml_Sales_Order_Shipment_View_Tracking</sales_order_shipment_view_tracking>
+                </rewrite>
+            </adminhtml>
+        </blocks>
+
+        <resources>
+            <brtracker_setup>
+                <setup><module>UltraDev_BRTracker</module></setup>
+                <connection><use>core_setup</use></connection>
+            </brtracker_setup>
+            <brtracker_write>
+                <connection><use>core_write</use></connection>
+            </brtracker_write>
+            <brtracker_read>
+                <connection><use>core_read</use></connection>
+            </brtracker_read>
+        </resources>
+
+        <template>
+            <email>
+                <brtracker_shipped>
+                    <label>BRTracker: Pedido Enviado</label>
+                    <file>ultradev/brtracker/email/shipped.html</file>
+                    <type>html</type>
+                    <module>UltraDev_BRTracker</module>
+                </brtracker_shipped>
+                <brtracker_in_transit>
+                    <label>BRTracker: Em Trânsito</label>
+                    <file>ultradev/brtracker/email/in_transit.html</file>
+                    <type>html</type>
+                    <module>UltraDev_BRTracker</module>
+                </brtracker_in_transit>
+                <brtracker_out_for_delivery>
+                    <label>BRTracker: Saiu Para Entrega</label>
+                    <file>ultradev/brtracker/email/out_for_delivery.html</file>
+                    <type>html</type>
+                    <module>UltraDev_BRTracker</module>
+                </brtracker_out_for_delivery>
+                <brtracker_delivered>
+                    <label>BRTracker: Pedido Entregue</label>
+                    <file>ultradev/brtracker/email/delivered.html</file>
+                    <type>html</type>
+                    <module>UltraDev_BRTracker</module>
+                </brtracker_delivered>
+                <brtracker_exception>
+                    <label>BRTracker: Problema na Entrega</label>
+                    <file>ultradev/brtracker/email/exception.html</file>
+                    <type>html</type>
+                    <module>UltraDev_BRTracker</module>
+                </brtracker_exception>
+            </email>
+        </template>
+
+        <events>
+            <sales_order_shipment_track_save_after>
+                <observers>
+                    <brtracker_track_save>
+                        <type>singleton</type>
+                        <class>brtracker/observer</class>
+                        <method>afterShipmentTrackSaved</method>
+                    </brtracker_track_save>
+                </observers>
+            </sales_order_shipment_track_save_after>
+            <sales_order_shipment_track_delete_after>
+                <observers>
+                    <brtracker_track_delete>
+                        <type>singleton</type>
+                        <class>brtracker/observer</class>
+                        <method>afterShipmentTrackDeleted</method>
+                    </brtracker_track_delete>
+                </observers>
+            </sales_order_shipment_track_delete_after>
+        </events>
+    </global>
+
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <UltraDev_BRTracker before="Mage_Adminhtml">UltraDev_BRTracker_Adminhtml</UltraDev_BRTracker>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+
+    <adminhtml>
+        <translate>
+            <modules>
+                <UltraDev_BRTracker>
+                    <files><default>UltraDev_BRTracker.csv</default></files>
+                </UltraDev_BRTracker>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <brtracker><file>ultradev_brtracker.xml</file></brtracker>
+            </updates>
+        </layout>
+    </adminhtml>
+
+    <frontend>
+        <translate>
+            <modules>
+                <UltraDev_BRTracker>
+                    <files><default>UltraDev_BRTracker.csv</default></files>
+                </UltraDev_BRTracker>
+            </modules>
+        </translate>
+    </frontend>
+
+    <crontab>
+        <jobs>
+            <brtracker_poll>
+                <schedule><cron_expr>*/30 * * * *</cron_expr></schedule>
+                <run><model>brtracker/observer::cronPollCarriers</model></run>
+            </brtracker_poll>
+        </jobs>
+    </crontab>
+
+    <default>
+        <brtracker>
+            <general>
+                <enabled>1</enabled>
+                <sender_email_identity>general</sender_email_identity>
+                <notify_shipped>1</notify_shipped>
+                <notify_in_transit>1</notify_in_transit>
+                <notify_out_for_delivery>1</notify_out_for_delivery>
+                <notify_delivered>1</notify_delivered>
+                <notify_exception>1</notify_exception>
+            </general>
+            <whatsapp>
+                <enabled>0</enabled>
+                <provider>evolution</provider>
+                <api_url></api_url>
+                <api_key></api_key>
+                <instance></instance>
+                <phone_field>telephone</phone_field>
+                <msg_shipped>📦 Olá {{customer_name}}! Seu pedido *#{{order_number}}* foi enviado! Transportadora: *{{carrier_name}}* | Rastreio: *{{tracking_code}}* | Acompanhe: {{tracking_url}}</msg_shipped>
+                <msg_in_transit>🚚 Seu pedido *#{{order_number}}* está em trânsito. Código: *{{tracking_code}}* | {{tracking_url}}</msg_in_transit>
+                <msg_out_for_delivery>🏠 Seu pedido *#{{order_number}}* saiu para entrega hoje! Fique atento! 👀</msg_out_for_delivery>
+                <msg_delivered>✅ Pedido *#{{order_number}}* entregue com sucesso! Obrigado pela compra! 🎉</msg_delivered>
+                <msg_exception>⚠️ Houve um problema na entrega do pedido *#{{order_number}}*. Entre em contato conosco.</msg_exception>
+            </whatsapp>
+            <carriers>
+                <correios_url>https://www.linkcorreios.com.br/?id={{code}}</correios_url>
+                <frenet_url>https://www.frenet.com.br/tracking/?id={{code}}</frenet_url>
+                <melhorenvio_url>https://melhorrastreio.com.br/rastreio/{{code}}</melhorenvio_url>
+                <jadlog_url>https://jadlog.com.br/siteInstitucional/tracking.jad?cte={{code}}</jadlog_url>
+                <loggi_url>https://www.loggi.com/rastreador/?q={{code}}</loggi_url>
+                <totalexpress_url>https://totalexpress.com.br/rastrear/{{code}}</totalexpress_url>
+                <custom_carriers></custom_carriers>
+            </carriers>
+        </brtracker>
+    </default>
+</config>
