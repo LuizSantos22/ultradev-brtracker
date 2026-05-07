@@ -1,0 +1,9 @@
+app/code/community/UltraDev/BRTracker                           app/code/community/UltraDev/BRTracker
+app/etc/modules/UltraDev_BRTracker.xml                          app/etc/modules/UltraDev_BRTracker.xml
+app/design/adminhtml/default/default/layout/ultradev_brtracker.xml   app/design/adminhtml/default/default/layout/ultradev_brtracker.xml
+app/design/adminhtml/default/default/template/ultradev               app/design/adminhtml/default/default/template/ultradev
+app/design/frontend/base/default/layout/ultradev_brtracker.xml       app/design/frontend/base/default/layout/ultradev_brtracker.xml
+app/design/frontend/base/default/template/ultradev                   app/design/frontend/base/default/template/ultradev
+app/locale/pt_BR/UltraDev_BRTracker.csv                         app/locale/pt_BR/UltraDev_BRTracker.csv
+skin/adminhtml/default/default/ultradev                          skin/adminhtml/default/default/ultradev
+skin/frontend/base/default/ultradev                              skin/frontend/base/default/ultradev
