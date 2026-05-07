@@ -1,0 +1,27 @@
+<!--@subject ⚠️ Aviso sobre a entrega do pedido #{{var order.increment_id}} @-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><meta charset="UTF-8"></head>
+<body style="margin:0;padding:0;background:#f4f4f4;font-family:Arial,sans-serif;">
+<table width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:30px 10px;">
+<table width="600" cellpadding="0" cellspacing="0" style="background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.1)">
+  <tr><td style="background:#d32f2f;padding:30px;text-align:center;">
+    <h1 style="color:#fff;margin:0;font-size:22px;">⚠️ Problema na entrega</h1>
+  </td></tr>
+  <tr><td style="padding:30px;">
+    <p style="font-size:16px;">Olá, <strong>{{var customer_name}}</strong>!</p>
+    <p>Houve um problema na entrega do seu pedido <strong>#{{var order_number}}</strong>. Entre em contato conosco para resolver.</p>
+    <table width="100%" cellpadding="8" cellspacing="0" style="background:#f8f9fa;border-radius:6px;margin:20px 0;">
+      <tr><td style="font-weight:bold;width:40%;">Transportadora:</td><td>{{var carrier_name}}</td></tr>
+      <tr><td style="font-weight:bold;">Código de Rastreio:</td><td><strong>{{var tracking_code}}</strong></td></tr>
+    </table>
+    <p style="text-align:center;margin:30px 0;">
+      <a href="{{var tracking_url}}" style="background:#d32f2f;color:#fff;padding:14px 30px;border-radius:6px;text-decoration:none;font-size:15px;font-weight:bold;">🔍 Rastrear Pedido</a>
+    </p>
+  </td></tr>
+  <tr><td style="background:#f8f9fa;padding:20px;text-align:center;font-size:12px;color:#999;">
+    {{var store.getFrontendName()}} — Este é um e-mail automático, não responda.
+  </td></tr>
+</table>
+</td></tr></table>
+</body></html>
