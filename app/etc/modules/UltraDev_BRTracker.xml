@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <UltraDev_BRTracker>
+            <active>true</active>
+            <codePool>community</codePool>
+            <version>1.0.0</version>
+        </UltraDev_BRTracker>
+    </modules>
+</config>
