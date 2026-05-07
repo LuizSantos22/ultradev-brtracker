@@ -1,0 +1,8 @@
+/* UltraDev BRTracker — Admin Styles */
+.brtracker-status-shipped          { color: #1a73e8; font-weight: bold; }
+.brtracker-status-in_transit       { color: #f57c00; font-weight: bold; }
+.brtracker-status-out_for_delivery { color: #388e3c; font-weight: bold; }
+.brtracker-status-delivered        { color: #1b5e20; font-weight: bold; }
+.brtracker-status-exception        { color: #d32f2f; font-weight: bold; }
+
+.brtracker-log-grid .col-channel   { text-transform: uppercase; font-size: 11px; }
