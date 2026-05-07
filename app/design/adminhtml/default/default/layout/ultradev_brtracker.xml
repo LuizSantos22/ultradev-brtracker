@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_brtracker_log_index>
+        <reference name="content">
+            <block type="brtracker_adminhtml/log_grid"
+                   name="brtracker.log.grid"
+                   template="ultradev/brtracker/log/grid.phtml"/>
+        </reference>
+    </adminhtml_brtracker_log_index>
+</layout>
