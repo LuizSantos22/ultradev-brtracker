@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <ultradev module="brtracker">
+            <title>UltraDev</title>
+            <sort_order>500</sort_order>
+            <children>
+                <brtracker module="brtracker">
+                    <title>BRTracker</title>
+                    <sort_order>10</sort_order>
+                    <children>
+                        <log translate="title" module="brtracker">
+                            <title>Log de Notificações</title>
+                            <sort_order>10</sort_order>
+                            <action>adminhtml/brtracker_log/index</action>
+                        </log>
+                        <config translate="title" module="brtracker">
+                            <title>Configurações</title>
+                            <sort_order>20</sort_order>
+                            <action>adminhtml/system_config/edit/section/brtracker_general</action>
+                        </config>
+                    </children>
+                </brtracker>
+            </children>
+        </ultradev>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <brtracker_general translate="title" module="brtracker"><title>BRTracker Geral</title></brtracker_general>
+                                    <brtracker_whatsapp translate="title" module="brtracker"><title>BRTracker WhatsApp</title></brtracker_whatsapp>
+                                    <brtracker_carriers translate="title" module="brtracker"><title>BRTracker Transportadoras</title></brtracker_carriers>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <ultradev translate="title" module="brtracker">
+                        <title>UltraDev</title>
+                        <children>
+                            <brtracker translate="title" module="brtracker">
+                                <title>BRTracker</title>
+                                <children>
+                                    <log translate="title"><title>Log de Notificações</title></log>
+                                </children>
+                            </brtracker>
+                        </children>
+                    </ultradev>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
