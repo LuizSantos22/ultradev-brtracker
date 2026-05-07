@@ -1,0 +1,197 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+        <ultradev translate="label">
+            <label>UltraDev</label>
+            <sort_order>500</sort_order>
+        </ultradev>
+    </tabs>
+    <sections>
+
+        <brtracker_general translate="label" module="brtracker">
+            <label>BRTracker – Geral</label>
+            <tab>ultradev</tab>
+            <sort_order>10</sort_order>
+            <show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>Configurações Gerais</label>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Habilitar Módulo</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store>
+                        </enabled>
+                        <sender_email_identity translate="label">
+                            <label>Remetente dos E-mails</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_identity</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store>
+                        </sender_email_identity>
+                        <notify_shipped translate="label">
+                            <label>Notificar ao Criar Envio</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store>
+                        </notify_shipped>
+                        <notify_in_transit translate="label">
+                            <label>Notificar Em Trânsito</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store>
+                        </notify_in_transit>
+                        <notify_out_for_delivery translate="label">
+                            <label>Notificar Saiu Para Entrega</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store>
+                        </notify_out_for_delivery>
+                        <notify_delivered translate="label">
+                            <label>Notificar Entregue</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store>
+                        </notify_delivered>
+                        <notify_exception translate="label">
+                            <label>Notificar Problema na Entrega</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store>
+                        </notify_exception>
+                    </fields>
+                </general>
+            </groups>
+        </brtracker_general>
+
+        <brtracker_whatsapp translate="label" module="brtracker">
+            <label>BRTracker – WhatsApp</label>
+            <tab>ultradev</tab>
+            <sort_order>20</sort_order>
+            <show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store>
+            <groups>
+                <whatsapp translate="label">
+                    <label>API WhatsApp</label>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store>
+                    <fields>
+                        <enabled translate="label">
+                            <label>Habilitar WhatsApp</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store>
+                        </enabled>
+                        <provider translate="label comment">
+                            <label>Provedor</label>
+                            <comment>Evolution API (self-hosted gratuito), Z-API ou 1msg.io</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>brtracker/adminhtml_system_config_source_whatsappProvider</source_model>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store>
+                        </provider>
+                        <api_url translate="label comment">
+                            <label>URL da API</label>
+                            <comment>Ex: https://evo.seusite.com.br</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store>
+                        </api_url>
+                        <api_key translate="label">
+                            <label>API Key / Token</label>
+                            <frontend_type>obscure</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_encrypted</backend_model>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store>
+                        </api_key>
+                        <instance translate="label comment">
+                            <label>Nome da Instância</label>
+                            <comment>Evolution API / Z-API: nome da instância conectada</comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store>
+                        </instance>
+                        <phone_field translate="label comment">
+                            <label>Campo de Telefone</label>
+                            <comment>Campo do endereço de entrega com o celular do cliente</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>brtracker/adminhtml_system_config_source_phoneField</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store>
+                        </phone_field>
+                        <msg_shipped translate="label comment">
+                            <label>Mensagem: Enviado</label>
+                            <comment>Vars: {{customer_name}} {{order_number}} {{carrier_name}} {{tracking_code}} {{tracking_url}}</comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store>
+                        </msg_shipped>
+                        <msg_in_transit translate="label">
+                            <label>Mensagem: Em Trânsito</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store>
+                        </msg_in_transit>
+                        <msg_out_for_delivery translate="label">
+                            <label>Mensagem: Saiu Para Entrega</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>90</sort_order>
+                            <show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store>
+                        </msg_out_for_delivery>
+                        <msg_delivered translate="label">
+                            <label>Mensagem: Entregue</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store>
+                        </msg_delivered>
+                        <msg_exception translate="label">
+                            <label>Mensagem: Problema</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>110</sort_order>
+                            <show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store>
+                        </msg_exception>
+                    </fields>
+                </whatsapp>
+            </groups>
+        </brtracker_whatsapp>
+
+        <brtracker_carriers translate="label" module="brtracker">
+            <label>BRTracker – Transportadoras</label>
+            <tab>ultradev</tab>
+            <sort_order>30</sort_order>
+            <show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store>
+            <groups>
+                <carriers translate="label">
+                    <label>URLs de Rastreio (use {{code}} como placeholder)</label>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store>
+                    <fields>
+                        <correios_url translate="label"><label>Correios</label><frontend_type>text</frontend_type><sort_order>10</sort_order><show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store></correios_url>
+                        <frenet_url translate="label"><label>Frenet</label><frontend_type>text</frontend_type><sort_order>20</sort_order><show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store></frenet_url>
+                        <melhorenvio_url translate="label"><label>Melhor Envio</label><frontend_type>text</frontend_type><sort_order>30</sort_order><show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store></melhorenvio_url>
+                        <jadlog_url translate="label"><label>JadLog</label><frontend_type>text</frontend_type><sort_order>40</sort_order><show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store></jadlog_url>
+                        <loggi_url translate="label"><label>Loggi</label><frontend_type>text</frontend_type><sort_order>50</sort_order><show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store></loggi_url>
+                        <totalexpress_url translate="label"><label>Total Express</label><frontend_type>text</frontend_type><sort_order>60</sort_order><show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store></totalexpress_url>
+                        <custom_carriers translate="label comment">
+                            <label>Transportadoras Customizadas (JSON)</label>
+                            <comment>Ex: {"minhaTransp": "https://rastreio.exemplo.com/{{code}}"}</comment>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default><show_in_website>1</show_in_website><show_in_store>1</show_in_store>
+                        </custom_carriers>
+                    </fields>
+                </carriers>
+            </groups>
+        </brtracker_carriers>
+
+    </sections>
+</config>
