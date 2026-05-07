@@ -63,4 +63,4 @@ The module automatically normalizes phone numbers to E.164 format:
 All sent (and failed) notifications are recorded with channel, event, recipient, status and timestamp.
 
 ## License
-MIT — © UltraDev (https://ultradev.com.br)
+MIT — © UltraDev 
