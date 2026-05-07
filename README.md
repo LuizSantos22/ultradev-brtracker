@@ -1,14 +1,14 @@
 # UltraDev_BRTracker
 
-Módulo OpenMage / Magento 1.x para notificação de rastreio de pedidos via **e-mail** e **WhatsApp**.
+OpenMage / Magento 1.x module for order tracking notifications via **email** and **WhatsApp**.
 
-## Compatibilidade
+## Compatibility
 - OpenMage 20.x / Magento 1.9.x
 - PHP 8.2+
-- Ultimo 1.19.x (tema)
+- Ultimo 1.19.x (theme)
 
-## Transportadoras suportadas
-| Transportadora | URL padrão incluída |
+## Supported Carriers
+| Carrier | Default URL included |
 |---|---|
 | Correios | ✅ |
 | Frenet (multi-carrier) | ✅ |
@@ -16,46 +16,51 @@ Módulo OpenMage / Magento 1.x para notificação de rastreio de pedidos via **e
 | JadLog | ✅ |
 | Loggi | ✅ |
 | Total Express | ✅ |
-| Customizadas | ✅ via JSON no admin |
+| Custom carriers | ✅ via JSON in admin |
 
-## Provedores WhatsApp
-| Provedor | Tipo |
+## WhatsApp Providers
+| Provider | Type |
 |---|---|
-| Evolution API | Self-hosted, gratuito |
+| Evolution API | Self-hosted, free |
 | Z-API | SaaS |
 | 1msg.io | SaaS |
 
-## Instalação via Composer
+## Installation via Composer
 ```bash
 composer require ultradev/magento-brtracker
 ```
 
-## Instalação manual (modman)
+## Manual Installation (modman)
 ```bash
 modman clone https://github.com/LuizSantos22/ultradev-brtracker
 ```
 
-## Configuração
-`Admin → UltraDev → BRTracker → Configurações`
+## Configuration
+`Admin → UltraDev → BRTracker → Settings`
 
-1. Habilitar módulo
-2. Configurar remetente de e-mail
-3. (Opcional) Habilitar WhatsApp e preencher API
-4. Ajustar URLs de rastreio por transportadora
+1. Enable the module
+2. Set the email sender identity
+3. (Optional) Enable WhatsApp and fill in the API credentials
+4. Adjust tracking URLs per carrier
 
-## Eventos notificados
-| Evento | E-mail | WhatsApp |
+## Notification Events
+| Event | Email | WhatsApp |
 |---|---|---|
-| Pedido enviado (shipment criado) | ✅ | ✅ |
-| Em trânsito | ✅ | ✅ |
-| Saiu para entrega | ✅ | ✅ |
-| Entregue | ✅ | ✅ |
-| Problema na entrega | ✅ | ✅ |
+| Order shipped (shipment created) | ✅ | ✅ |
+| In transit | ✅ | ✅ |
+| Out for delivery | ✅ | ✅ |
+| Delivered | ✅ | ✅ |
+| Delivery exception | ✅ | ✅ |
 
-## Celulares brasileiros
-O módulo normaliza automaticamente números para E.164:
+## Brazilian Phone Normalization
+The module automatically normalizes phone numbers to E.164 format:
 - `(11) 98403-9303` → `5511984039303`
-- Valida o 9º dígito obrigatório de celulares BR
+- Validates the mandatory 9th digit for Brazilian mobile numbers (DDD + 9 + 8 digits)
 
-## Log
-`Admin → UltraDev → BRTracker → Log de Notificações`
+## Notification Log
+`Admin → UltraDev → BRTracker → Notification Log`
+
+All sent (and failed) notifications are recorded with channel, event, recipient, status and timestamp.
+
+## License
+MIT — © UltraDev (https://ultradev.com.br)
