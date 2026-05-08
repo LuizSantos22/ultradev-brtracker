@@ -1,4 +1,26 @@
 <?xml version="1.0"?>
 <layout>
-    <!-- reservado para blocos frontend futuros -->
+    <brtracker_track_index translate="label">
+        <label>BRTracker — Página de Rastreio</label>
+        <update handle="customer_account"/>
+        <reference name="root">
+            <action method="setTemplate">
+                <template>page/2columns-right.phtml</template>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="brtracker/track_status"
+                   name="brtracker.track.status"
+                   template="ultradev/brtracker/track/status.phtml">
+                <block type="brtracker/track_crosssell"
+                       name="brtracker.track.crosssell"
+                       template="ultradev/brtracker/track/crosssell.phtml"/>
+            </block>
+        </reference>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>ultradev/brtracker/css/track.css</stylesheet>
+            </action>
+        </reference>
+    </brtracker_track_index>
 </layout>
