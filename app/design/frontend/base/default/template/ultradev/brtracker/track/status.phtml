@@ -1,0 +1,114 @@
+<?php
+/** @var UltraDev_BRTracker_Block_Track_Status $this */
+$track   = $this->getTrack();
+$order   = $this->getOrder();
+$steps   = $this->getTimelineSteps();
+$history = $this->getTrackingHistory();
+$status  = $this->getCurrentStatus();
+?>
+<div class="brt-page">
+
+  <!-- CROSS-SELL -->
+  <?php if ($this->getChildHtml('brtracker.track.crosssell')): ?>
+  <div class="brt-crosssell-wrap">
+    <h3><?php echo $this->__('Enquanto aguarda, confira estas ofertas:') ?></h3>
+    <?php echo $this->getChildHtml('brtracker.track.crosssell') ?>
+  </div>
+  <?php endif ?>
+
+  <h2 class="brt-page-title">
+    <?php echo $this->__('Rastreio do Pedido #%s', $order->getIncrementId()) ?>
+  </h2>
+
+  <!-- TIMELINE HORIZONTAL -->
+  <div class="brt-timeline">
+    <?php foreach ($steps as $stepKey => $stepLabel): ?>
+      <?php $state = $this->getStepState($stepKey) ?>
+      <div class="brt-step brt-step--<?php echo $state ?>">
+        <div class="brt-step__circle">
+          <?php if ($state === 'done' || $state === 'active'): ?>
+            <span class="brt-step__check">&#10003;</span>
+          <?php endif ?>
+        </div>
+        <div class="brt-step__label"><?php echo $this->escapeHtml($stepLabel) ?></div>
+      </div>
+      <?php if ($stepKey !== array_key_last($steps)): ?>
+        <div class="brt-step__line brt-step__line--<?php echo $state ?>"></div>
+      <?php endif ?>
+    <?php endforeach ?>
+  </div>
+
+  <div class="brt-columns">
+
+    <!-- HISTÓRICO VERTICAL -->
+    <div class="brt-history">
+      <h3><?php echo $this->__('Histórico de Rastreio') ?></h3>
+      <?php if (empty($history)): ?>
+        <p class="brt-history__empty">
+          <?php echo $this->__('Histórico ainda não disponível. Tente novamente em breve.') ?>
+        </p>
+      <?php else: ?>
+        <ul class="brt-history__list">
+          <?php foreach ($history as $event): ?>
+            <li class="brt-history__item">
+              <div class="brt-history__dot"></div>
+              <div class="brt-history__content">
+                <span class="brt-history__date">
+                  <?php echo $this->escapeHtml($event['date'] ?? '') ?>
+                </span>
+                <span class="brt-history__desc">
+                  <?php echo $this->escapeHtml($event['description'] ?? '') ?>
+                </span>
+                <?php if (!empty($event['location'])): ?>
+                  <span class="brt-history__location">
+                    📍 <?php echo $this->escapeHtml($event['location']) ?>
+                  </span>
+                <?php endif ?>
+              </div>
+            </li>
+          <?php endforeach ?>
+        </ul>
+      <?php endif ?>
+    </div>
+
+    <!-- INFO PANEL -->
+    <div class="brt-info">
+      <h3><?php echo $this->__('Informações') ?></h3>
+      <table class="brt-info__table">
+        <tr>
+          <th><?php echo $this->__('Pedido') ?></th>
+          <td>#<?php echo $this->escapeHtml($order->getIncrementId()) ?></td>
+        </tr>
+        <tr>
+          <th><?php echo $this->__('Código de Rastreio') ?></th>
+          <td><strong><?php echo $this->escapeHtml($this->getTrackingCode()) ?></strong></td>
+        </tr>
+        <?php if ($this->getShippedOn()): ?>
+        <tr>
+          <th><?php echo $this->__('Enviado em') ?></th>
+          <td><?php echo $this->escapeHtml($this->getShippedOn()) ?></td>
+        </tr>
+        <?php endif ?>
+        <?php if ($this->getShippingAddress()): ?>
+        <tr>
+          <th><?php echo $this->__('Destino') ?></th>
+          <td><?php echo $this->escapeHtml($this->getShippingAddress()) ?></td>
+        </tr>
+        <?php endif ?>
+        <?php if ($this->getCarrierName()): ?>
+        <tr>
+          <th><?php echo $this->__('Transportadora') ?></th>
+          <td><?php echo $this->escapeHtml($this->getCarrierName()) ?></td>
+        </tr>
+        <?php endif ?>
+      </table>
+      <?php if ($this->getTrackingUrl()): ?>
+        <a href="<?php echo $this->escapeHtml($this->getTrackingUrl()) ?>"
+           target="_blank" class="brt-info__btn">
+          <?php echo $this->__('Rastrear no site da transportadora') ?>
+        </a>
+      <?php endif ?>
+    </div>
+
+  </div><!-- .brt-columns -->
+</div><!-- .brt-page -->
