@@ -1,0 +1,74 @@
+/* ── UltraDev BRTracker — Frontend Track Page ─────────────────────── */
+
+.brt-page { max-width: 960px; margin: 0 auto; padding: 20px 15px; font-family: Arial, sans-serif; }
+.brt-page-title { font-size: 22px; color: #333; margin: 20px 0 15px; }
+
+/* Cross-sell */
+.brt-crosssell-wrap { margin-bottom: 30px; }
+.brt-crosssell-wrap h3 { font-size: 16px; color: #555; margin-bottom: 12px; text-transform: uppercase; letter-spacing: .5px; }
+.brt-crosssell__list { display: flex; gap: 15px; list-style: none; margin: 0; padding: 0; overflow-x: auto; }
+.brt-crosssell__item { flex: 0 0 160px; background: #fff; border: 1px solid #e5e5e5; border-radius: 6px; padding: 10px; text-align: center; }
+.brt-crosssell__img-wrap img { width: 100%; height: auto; border-radius: 4px; }
+.brt-crosssell__name { display: block; font-size: 12px; color: #333; margin: 8px 0 4px; text-decoration: none; }
+.brt-crosssell__name:hover { color: #1a73e8; }
+.brt-crosssell__price { display: block; font-size: 14px; font-weight: bold; color: #1a73e8; margin-bottom: 8px; }
+.brt-crosssell__btn { display: inline-block; background: #1a73e8; color: #fff; font-size: 11px; padding: 6px 10px; border-radius: 4px; text-decoration: none; }
+.brt-crosssell__btn:hover { background: #1558b0; }
+
+/* Timeline horizontal */
+.brt-timeline { display: flex; align-items: center; justify-content: center; margin: 30px 0; padding: 20px; background: #f8f9fa; border-radius: 8px; }
+.brt-step { display: flex; flex-direction: column; align-items: center; gap: 8px; min-width: 80px; }
+.brt-step__circle { width: 36px; height: 36px; border-radius: 50%; border: 3px solid #ccc; background: #fff; display: flex; align-items: center; justify-content: center; font-size: 16px; color: #fff; transition: all .3s; }
+.brt-step--done   .brt-step__circle { background: #1a73e8; border-color: #1a73e8; }
+.brt-step--active .brt-step__circle { background: #1a73e8; border-color: #1a73e8; box-shadow: 0 0 0 4px rgba(26,115,232,.2); }
+.brt-step__check { color: #fff; font-weight: bold; }
+.brt-step__label { font-size: 12px; color: #666; text-align: center; }
+.brt-step--done   .brt-step__label,
+.brt-step--active .brt-step__label { color: #1a73e8; font-weight: bold; }
+
+.brt-step__line { flex: 1; height: 3px; background: #ccc; margin: 0 4px; margin-bottom: 20px; transition: background .3s; }
+.brt-step__line--done { background: #1a73e8; }
+
+/* Columns */
+.brt-columns { display: flex; gap: 30px; margin-top: 20px; }
+.brt-history { flex: 1; }
+.brt-info    { width: 280px; flex-shrink: 0; }
+
+/* History */
+.brt-history h3,
+.brt-info h3 { font-size: 15px; font-weight: bold; color: #333; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 2px solid #e5e5e5; }
+.brt-history__list { list-style: none; margin: 0; padding: 0; }
+.brt-history__item { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid #f0f0f0; position: relative; }
+.brt-history__dot { width: 12px; height: 12px; border-radius: 50%; background: #1a73e8; flex-shrink: 0; margin-top: 4px; }
+.brt-history__content { display: flex; flex-direction: column; gap: 2px; }
+.brt-history__date { font-size: 11px; color: #999; }
+.brt-history__desc { font-size: 13px; color: #333; }
+.brt-history__location { font-size: 11px; color: #666; }
+.brt-history__empty { color: #999; font-size: 13px; font-style: italic; }
+
+/* Info panel */
+.brt-info__table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.brt-info__table th { text-align: left; color: #666; padding: 6px 8px 6px 0; width: 45%; vertical-align: top; }
+.brt-info__table td { color: #333; padding: 6px 0; }
+.brt-info__btn { display: inline-block; margin-top: 15px; background: #1a73e8; color: #fff; padding: 10px 16px; border-radius: 5px; text-decoration: none; font-size: 13px; }
+.brt-info__btn:hover { background: #1558b0; }
+
+/* Admin popup */
+.brt-popup { font-family: Arial, sans-serif; font-size: 13px; padding: 10px; min-width: 560px; }
+.brt-popup__header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid #ddd; }
+.brt-popup__close { background: #e8453c; color: #fff; border: none; padding: 4px 10px; cursor: pointer; border-radius: 3px; font-size: 12px; }
+.brt-popup__carrier { background: #f0f4ff; border: 1px solid #c5d3f0; padding: 8px 12px; border-radius: 4px; margin-bottom: 12px; font-size: 13px; }
+.brt-timeline--admin { margin: 10px 0 20px; padding: 15px; }
+.brt-popup__body { display: flex; gap: 20px; }
+.brt-popup__history { flex: 1; }
+.brt-popup__info { width: 220px; flex-shrink: 0; }
+.brt-btn-refresh { margin-top: 12px; }
+
+/* Responsive */
+@media (max-width: 640px) {
+    .brt-columns { flex-direction: column; }
+    .brt-info { width: 100%; }
+    .brt-timeline { gap: 0; padding: 15px 8px; }
+    .brt-step__label { font-size: 10px; }
+    .brt-crosssell__list { flex-wrap: nowrap; }
+}
