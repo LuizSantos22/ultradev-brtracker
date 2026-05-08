@@ -1,0 +1,111 @@
+<?php
+/** @var UltraDev_BRTracker_Block_Adminhtml_Sales_Order_Shipment_Tracking_Popup $this */
+$track   = $this->getTrack();
+$order   = $this->getOrder();
+$steps   = $this->getTimelineSteps();
+$history = $this->getTrackingHistory();
+?>
+<div class="brt-popup" id="brt-tracking-popup">
+
+  <div class="brt-popup__header">
+    <strong><?php echo $this->__('Tracking Information') ?></strong>
+    <button onclick="brtClosePopup()" class="brt-popup__close"><?php echo $this->__('Close') ?></button>
+  </div>
+
+  <?php if ($track && $track->getCarrierName()): ?>
+  <div class="brt-popup__carrier">
+    <?php echo $this->escapeHtml($track->getCarrierName()) ?>
+    &nbsp;|&nbsp;
+    <strong><?php echo $this->escapeHtml($track->getTrackingCode()) ?></strong>
+  </div>
+  <?php endif ?>
+
+  <h4><?php echo $this->__('Shipment Information') ?></h4>
+
+  <!-- TIMELINE HORIZONTAL -->
+  <div class="brt-timeline brt-timeline--admin">
+    <?php foreach ($steps as $stepKey => $stepLabel): ?>
+      <?php $state = $this->getStepState($stepKey) ?>
+      <div class="brt-step brt-step--<?php echo $state ?>">
+        <div class="brt-step__circle">
+          <?php if ($state !== 'pending'): ?><span>&#10003;</span><?php endif ?>
+        </div>
+        <div class="brt-step__label"><?php echo $this->escapeHtml($stepLabel) ?></div>
+      </div>
+      <?php if ($stepKey !== array_key_last($steps)): ?>
+        <div class="brt-step__line brt-step__line--<?php echo $state ?>"></div>
+      <?php endif ?>
+    <?php endforeach ?>
+  </div>
+
+  <div class="brt-popup__body">
+
+    <!-- HISTÓRICO -->
+    <div class="brt-popup__history">
+      <h4><?php echo $this->__('Tracking Info') ?></h4>
+      <?php if (empty($history)): ?>
+        <p><?php echo $this->__('No tracking events available yet.') ?></p>
+      <?php else: ?>
+        <ul class="brt-history__list">
+          <?php foreach ($history as $event): ?>
+            <li class="brt-history__item">
+              <div class="brt-history__dot brt-history__dot--<?php echo $this->getCurrentStatus() ?>"></div>
+              <div class="brt-history__content">
+                <span class="brt-history__date"><?php echo $this->escapeHtml($event['date'] ?? '') ?></span>
+                <span class="brt-history__desc"><?php echo $this->escapeHtml($event['description'] ?? '') ?></span>
+                <?php if (!empty($event['location'])): ?>
+                  <span class="brt-history__location"><?php echo $this->escapeHtml($event['location']) ?></span>
+                <?php endif ?>
+              </div>
+            </li>
+          <?php endforeach ?>
+        </ul>
+      <?php endif ?>
+    </div>
+
+    <!-- INFO -->
+    <div class="brt-popup__info">
+      <h4><?php echo $this->__('Info') ?></h4>
+      <table class="brt-info__table">
+        <tr><th><?php echo $this->__('Order number') ?></th>
+            <td>#<?php echo $this->escapeHtml($order?->getIncrementId() ?? '') ?></td></tr>
+        <tr><th><?php echo $this->__('Tracking code') ?></th>
+            <td><strong><?php echo $this->escapeHtml($track?->getTrackingCode() ?? '') ?></strong></td></tr>
+        <tr><th><?php echo $this->__('Status') ?></th>
+            <td><?php echo $this->escapeHtml($this->getCurrentStatus()) ?></td></tr>
+        <?php if ($track?->getTrackingUrl()): ?>
+        <tr><th><?php echo $this->__('Track link') ?></th>
+            <td><a href="<?php echo $this->escapeHtml($track->getTrackingUrl()) ?>"
+                   target="_blank"><?php echo $this->__('Open') ?></a></td></tr>
+        <?php endif ?>
+      </table>
+
+      <button onclick="brtRefreshTrack(<?php echo (int)$track?->getId() ?>)"
+              class="scalable brt-btn-refresh">
+        <?php echo $this->__('Refresh Status') ?>
+      </button>
+    </div>
+
+  </div><!-- .brt-popup__body -->
+</div>
+
+<script>
+function brtClosePopup() {
+    var el = document.getElementById('brt-tracking-popup-wrap');
+    if (el) el.style.display = 'none';
+}
+function brtRefreshTrack(trackId) {
+    new Ajax.Request('<?php echo $this->getUrl('adminhtml/brtracker_track/refresh') ?>', {
+        method: 'get',
+        parameters: { track_id: trackId },
+        onSuccess: function(r) {
+            var data = r.responseText.evalJSON();
+            if (data.success) {
+                location.reload();
+            } else {
+                alert(data.message);
+            }
+        }
+    });
+}
+</script>
