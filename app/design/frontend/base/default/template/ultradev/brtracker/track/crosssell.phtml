@@ -1,0 +1,30 @@
+<?php
+/** @var UltraDev_BRTracker_Block_Track_Crosssell $this */
+$products = $this->getCrosssellProducts();
+if (!$products->getSize()) return;
+?>
+<div class="brt-crosssell">
+  <ul class="brt-crosssell__list">
+    <?php foreach ($products as $product): ?>
+      <li class="brt-crosssell__item">
+        <a href="<?php echo $product->getProductUrl() ?>" class="brt-crosssell__img-wrap">
+          <img src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(160) ?>"
+               alt="<?php echo $this->escapeHtml($product->getName()) ?>"
+               width="160" height="160" loading="lazy">
+        </a>
+        <div class="brt-crosssell__info">
+          <a href="<?php echo $product->getProductUrl() ?>" class="brt-crosssell__name">
+            <?php echo $this->escapeHtml($product->getName()) ?>
+          </a>
+          <span class="brt-crosssell__price">
+            <?php echo $this->formatPrice((float)$product->getFinalPrice()) ?>
+          </span>
+          <a href="<?php echo $this->getAddToCartUrl($product) ?>"
+             class="brt-crosssell__btn button btn-cart">
+            <?php echo $this->__('Adicionar ao Carrinho') ?>
+          </a>
+        </div>
+      </li>
+    <?php endforeach ?>
+  </ul>
+</div>
