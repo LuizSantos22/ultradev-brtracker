@@ -134,6 +134,15 @@
     </adminhtml>
 
     <frontend>
+        <routers>
+            <brtracker>
+                <use>standard</use>
+                <args>
+                    <module>UltraDev_BRTracker</module>
+                    <frontName>brtracker</frontName>
+                </args>
+            </brtracker>
+        </routers>
         <translate>
             <modules>
                 <UltraDev_BRTracker>
@@ -141,6 +150,11 @@
                 </UltraDev_BRTracker>
             </modules>
         </translate>
+        <layout>
+            <updates>
+                <brtracker><file>ultradev_brtracker.xml</file></brtracker>
+            </updates>
+        </layout>
     </frontend>
 
     <crontab>
